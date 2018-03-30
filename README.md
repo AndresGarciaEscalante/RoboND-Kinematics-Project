@@ -186,9 +186,11 @@ The matrix ``` T0_7 ``` has the information about the ```rotation, translation, 
 ## Testing the Forward Kinematics
 
 To verify is the FK is correct, we assigned all the values of the joints ```q1 ,q2 ,q3 ,q4, q5 ,q6 ,q7 ``` equal to `0`. Giving us the following matrix:
+
 ![](misc_images/ForwardKinematics0.png)
 
 And in the simulation give us this values:
+
 ![](misc_images/ForwardKinematics00.png)
 
 For the second test, we changed the values of the joints to ``` q1 = 1; q2 = 0.30; q3 = -0.45; q4 = 0.90; q5 = -0.35; q6 = 0; q7 = 0;```. The matrix give us the following values:
@@ -199,4 +201,4 @@ Also the simulation had the same values as in the next image:
 
 ![](misc_images/ForwardKinematics11.png)
 
-![Python code to test the forwardkinematics](ForwardKInematicsTesting.py)
+![Python code to test the forwardkinematics](ForwardKinematicsTesting.py)
