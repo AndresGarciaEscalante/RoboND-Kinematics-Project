@@ -1,8 +1,7 @@
 [![Udacity - Robotics NanoDegree Program]
 # Robotic arm - Pick & Place project
 ## Using the KUKA KR 210
----------------------------------Falta image-------------------------------------------------
-
+![](misc_images/kuka.jpg)
 ## Setting up the enviroment:
 For this project used the following programs:
 - Ubuntu 16.04 LTS OS
