@@ -51,4 +51,5 @@ $ rosrun kuka_arm IK_server.py
 ## Forward Kinematics 
 ### Unified Robot Description Format (URDF)
 This file provided all the information about the ```Kuka kr 210``` structrure ```Links, joints,Transmission, Actuators , and physics properties``` for the gazebo environment.
+
   -------------------Imagen-----------------
