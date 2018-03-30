@@ -1,8 +1,7 @@
 [![Udacity - Robotics NanoDegree Program]
-!(https://s3-us-west-1.amazonaws.com/udacity-robotics/Extra+Images/RoboND_flag.png)](https://www.google.com.mx/search?q=kuka+kr210&source=lnms&tbm=isch&sa=X&ved=0ahUKEwisg7vxnZPaAhVE2GMKHaoRDJcQ_AUICigB&biw=1855&bih=959#imgrc=ssMjSXNCrCBP6M:)
 # Robotic arm - Pick & Place project
 ## Using the KUKA KR 210
-!(http://url/to/img.png)
+---------------------------------Falta image-------------------------------------------------
 
 ## Setting up the enviroment:
 For this project used the following programs:
@@ -10,6 +9,11 @@ For this project used the following programs:
 	* Ros Luna 1.13.6
 	* Gazebo 7.9
 	* Rviz 1.12.15
+	
+- [x] @mentions, #refs, [links](), **formatting**, and <del>tags</del> supported
+- [x] list syntax required (any unordered or ordered list supported)
+- [x] this is a complete item
+- [ ] this is an incomplete item
 ### One time Gazebo setup step:
 Check the version of gazebo installed on your system using a terminal:
 ```sh
