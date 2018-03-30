@@ -68,11 +68,13 @@ with this file we extract the following information that will be useful for the 
 | 7             | End-Effector  | link_6         | gripper_link| 0.11 | 0   | 0.33  |
 | Total         |               |                |             | 2.153| 0   | 1.946 |                                         | ------------- |---------------|----------------|-------------| ----:| ---:| -----:|
 
+### Denavit-Hantenberg 
+
 Now we perform the DH procedure on the ```kuka kr 210``` diagram as follows:
 
 ---------------------------------Imagen---------------------------------------
 
-Once we have the diagram, we will fullfill the DH parameters ``` alpha,a, d, theta ```
+Once we have the diagram, we will fulfill the DH parameters ``` alpha,a, d, theta ```
 
 | i             |alpha(i-1)     | a(i-1)         | d(i)        | theta(i)   |
 | ------------- |:-------------:| --------------:| -----------:|-----------:|
@@ -84,4 +86,32 @@ Once we have the diagram, we will fullfill the DH parameters ``` alpha,a, d, the
 | 6             | -90           | 0              | 0           | 0          |
 | 7             | 0             | 0              | 0.303       | 0          |
 
+### Implementation of the Forward Kinematics on Python
+First of all we need to import some useful libraries for this project.
+```Python
+import rospy
+import tf
+from kuka_arm.srv import *
+from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
+from geometry_msgs.msg import Pose
+from mpmath import *
+from sympy import *
+```
 
+Additonaly we must represent the DH parameters in the code, so we need the symbols.
+```Python
+# Create symbols
+        q1, q2, q3, q4, q5, q6, q7 = symbols('q1:8')
+        d1, d2, d3, d4, d5, d6, d7 = symbols('d1:8')
+        a0, a1, a2, a3, a4, a5, a6 = symbols('a0:7')
+        alpha0, alpha1, alpha2, alpha3, alpha4, alpha5, alpha6 = symbols('alpha0:7')
+
+        # Create Modified DH parameters
+        s = {alpha0:    0,  a0:   0, d1: 0.75, q1: q1,
+             alpha1: -pi/2,  a1:     0.35, d2: 0, q2: q2 - pi/2,
+             alpha2:    0,  a2:     1.25, d3: 0, q3: q3,
+             alpha3: -pi/2,  a3: -0.054, d4: 1.50, q4: q4,
+             alpha4:  pi/2,  a4:     0, d5: 0, q5: q5,
+             alpha5: -pi/2,  a5:     0, d6: 0, q6: q6,
+             alpha6:      0,  a6:     0, d7: 0.303, q7: 0}
+```
