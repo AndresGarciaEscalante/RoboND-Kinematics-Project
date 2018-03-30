@@ -172,11 +172,16 @@ T6_G = T6_G.subs(s)
 Then all the matrices are multiplied so that we can have a relation of all frames from the Base to the End-Effector.
 ```Python
 # Transform from Base link to end effector (Gripper)
-        # Important: If we multiply in conjunction the result is different.
-        T0_2 = (T0_1 * T1_2)  # Link_0 to Link_2
-        T0_3 = (T0_2 * T2_3)  # Link_0 to Link_3
-        T0_4 = (T0_3 * T3_4)  # Link_0 to Link_4
-        T0_5 = (T0_4 * T4_5)  # Link_0 to Link_5
-        T0_6 = (T0_5 * T5_6)  # Link_0 to Link_6
-        T0_7 = (T0_6 * T6_G)  # Link_0 to Link_7
+# Important: If we multiply in conjunction the result is different.
+T0_2 = (T0_1 * T1_2)  # Link_0 to Link_2
+T0_3 = (T0_2 * T2_3)  # Link_0 to Link_3
+T0_4 = (T0_3 * T3_4)  # Link_0 to Link_4
+T0_5 = (T0_4 * T4_5)  # Link_0 to Link_5
+T0_6 = (T0_5 * T5_6)  # Link_0 to Link_6
+T0_7 = (T0_6 * T6_G)  # Link_0 to Link_7
 ```
+The matrix ``` T0_7 ``` has the information about the ```rotation, translation, perspective, and scale``` of the ```kuka kr 210``` with the following structure:
+
+------------------image-------------------------------------------
+
+
