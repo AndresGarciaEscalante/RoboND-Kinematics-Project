@@ -10,10 +10,10 @@ For this project used the following programs:
 	* Gazebo 7.9
 	* Rviz 1.12.15
 	
-- [x] @mentions, #refs, [links](), **formatting**, and <del>tags</del> supported
-- [x] list syntax required (any unordered or ordered list supported)
-- [x] this is a complete item
-- [ ] this is an incomplete item
+- @mentions, #refs, [links](), **formatting**, and <del>tags</del> supported
+- list syntax required (any unordered or ordered list supported)
+- this is a complete item
+- this is an incomplete item
 ### One time Gazebo setup step:
 Check the version of gazebo installed on your system using a terminal:
 ```sh
