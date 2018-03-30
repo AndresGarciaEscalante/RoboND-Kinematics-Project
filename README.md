@@ -1,5 +1,15 @@
 [![Udacity - Robotics NanoDegree Program]
 # Robotic arm - Pick & Place project
+
+
+```javascript
+function fancyAlert(arg) {
+  if(arg) {
+    $.facebox({div:'#foo'})
+  }
+}
+```
+
 ## Using the KUKA KR 210
 ---------------------------------Falta image-------------------------------------------------
 
