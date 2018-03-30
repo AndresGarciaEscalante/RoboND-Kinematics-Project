@@ -1,8 +1,7 @@
 [![Udacity - Robotics NanoDegree Program]
 # Robotic arm - Pick & Place project
 ## Using the KUKA KR 210
----------------------------------Falta image-------------------------------------------------
-
+![](misc_images/kuka.jpg)
 ## Setting up the enviroment:
 For this project used the following programs:
 - Ubuntu 16.04 LTS OS
@@ -52,7 +51,7 @@ $ rosrun kuka_arm IK_server.py
 ### Unified Robot Description Format (URDF)
 This file provided all the information about the ```Kuka kr 210``` structrure ```Links, joints,Transmission, Actuators , and physics properties``` for the gazebo environment.
 
-  -------------------Imagen-----------------
+![](misc_images/URDF.png)
 
 with this file we extract the following information that will be useful for the next steps:
 
@@ -72,7 +71,7 @@ with this file we extract the following information that will be useful for the 
 
 Now we perform the DH procedure on the ```kuka kr 210``` diagram as follows:
 
----------------------------------Imagen---------------------------------------
+![](misc_images/kukaBodyDiagram.png)
 
 Once we have the diagram, we will fulfill the DH parameters ``` alpha,a, d, theta ```
 
@@ -117,11 +116,11 @@ s = {alpha0:    0,  a0:   0, d1: 0.75, q1: q1,
 ```
 Now it is time to build our individual transform matrices between different links. 
 
--------------------------------------matrix------------------
+![](misc_images/dh-transform-matrix.png)
 
 Each matrix is composed by 4 matrices, 2 rotations and 2 translations, performed in the following order.
 
-----------------------------------------------FOrmala ---------------------------------
+![](misc_images/dh-transform.png)
 
 On Python code this is represented as follows: 
 ```Python
@@ -182,6 +181,6 @@ T0_7 = (T0_6 * T6_G)  # Link_0 to Link_7
 ```
 The matrix ``` T0_7 ``` has the information about the ```rotation, translation, perspective, and scale``` of the ```kuka kr 210``` with the following structure:
 
-------------------image-------------------------------------------
+![](misc_images/HT.png)
 
 
