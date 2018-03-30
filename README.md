@@ -1,8 +1,13 @@
 [![Udacity - Robotics NanoDegree Program](https://s3-us-west-1.amazonaws.com/udacity-robotics/Extra+Images/RoboND_flag.png)](https://www.udacity.com/robotics)
 # Robotic arm - Pick & Place project
+## Using the KUKA KR 210
 
-Make sure you are using robo-nd VM or have Ubuntu+ROS installed locally.
-
+## Setting up the enviroment:
+For this project used the following programs:
+	* Ubuntu 16.04 LTS OS
+	* Ros Luna 1.13.6
+	* Gazebo 7.9
+	* Rviz 1.12.15
 ### One time Gazebo setup step:
 Check the version of gazebo installed on your system using a terminal:
 ```sh
