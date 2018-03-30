@@ -94,7 +94,7 @@ T_total = (T0_7 * R_corr)
 # Verifying the matrices output
 # homogeneuos transformation from Link_0 to Link_7
 print("\nT0_7 = \n")
-pprint(T0_7.evalf(subs={q1: 0, q2: 0, q3: 0, q4: 0, q5: 0, q6: 0}))
+pprint(T0_7.evalf(subs={q1: 1, q2: 0.30, q3: -0.45, q4: 0.90, q5: -0.35, q6: 0}))
 print("\n")
 
 # Final Matrix
