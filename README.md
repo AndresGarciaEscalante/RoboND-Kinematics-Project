@@ -15,7 +15,8 @@ For this project used the following programs:
 $ git clone https://github.com/mkhuthir/RoboND-Kinematics-Project.git ~/catkin_ws 
 ```
 - As this project uses custom Gazebo 3D models, we need to add the path through environment variable:
-```$ echo "export GAZEBO_MODEL_PATH=~/catkin_ws/src/kuka_arm/models" >> ~/.bashrc
+```Ubuntu
+$ echo "export GAZEBO_MODEL_PATH=~/catkin_ws/src/kuka_arm/models" >> ~/.bashrc
 ```
 - Install missing ROS dependencies using the rosdep install command:
 ```
