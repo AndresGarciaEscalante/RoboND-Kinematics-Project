@@ -11,11 +11,11 @@ For this project used the following programs:
 - Rviz 1.12.15
 ## Installation steps:
 - Clone this repository to your home directory:
-```Terminal
+```Python
 $ git clone https://github.com/mkhuthir/RoboND-Kinematics-Project.git ~/catkin_ws 
 ```
 - As this project uses custom Gazebo 3D models, we need to add the path through environment variable:
-```Ubuntu
+```Python
 $ echo "export GAZEBO_MODEL_PATH=~/catkin_ws/src/kuka_arm/models" >> ~/.bashrc
 ```
 - Install missing ROS dependencies using the rosdep install command:
