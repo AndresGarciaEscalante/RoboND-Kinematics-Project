@@ -11,7 +11,7 @@ For this project used the following programs:
 ## Installation steps:
 - Clone this repository to your home directory:
 ```
-$ git clone https://github.com/mkhuthir/RoboND-Kinematics-Project.git ~/catkin_ws 
+$ git clone https://github.com/mkhuthir/RoboND-Kinematics-Project.git ~/catkin_ws
 ```
 - As this project uses custom Gazebo 3D models, we need to add the path through environment variable:
 ```
@@ -45,9 +45,9 @@ $ rosrun kuka_arm safe_spawner.sh
 ```
 - To run IK Server use:
 ```
-$ rosrun kuka_arm IK_server.py 
+$ rosrun kuka_arm IK_server.py
 ```
-## Forward Kinematics 
+## Forward Kinematics
 ### Unified Robot Description Format (URDF)
 This file provided all the information about the ```Kuka kr 210``` structrure ```Links, joints,Transmission, Actuators , and physics properties``` for the gazebo environment.
 
@@ -67,7 +67,7 @@ with this file we extract the following information that will be useful for the 
 | 7             | End-Effector  | link_6         | gripper_link| 0.11 | 0   | 0.33  |
 | Total         |               |                |             | 2.153| 0   | 1.946 |                                         | ------------- |---------------|----------------|-------------| ----:| ---:| -----:|
 
-### Denavit-Hantenberg 
+### Denavit-Hantenberg
 
 Now we perform the DH procedure on the ```kuka kr 210``` diagram as follows:
 
@@ -114,7 +114,7 @@ s = {alpha0:    0,  a0:   0, d1: 0.75, q1: q1,
      alpha5: -pi/2,  a5:     0, d6: 0, q6: q6,
      alpha6:      0,  a6:     0, d7: 0.303, q7: 0}
 ```
-Now it is time to build our individual transform matrices between different links. 
+Now it is time to build our individual transform matrices between different links.
 
 ![](misc_images/dh-transform-matrix.png)
 
@@ -122,7 +122,7 @@ Each matrix is composed by 4 matrices, 2 rotations and 2 translations, performed
 
 ![](misc_images/dh-transform.png)
 
-On Python code this is represented as follows: 
+On Python code this is represented as follows:
 ```Python
 # Individual Transformations
 # Homogeneuos Transformation Link_0 to link_1
@@ -183,4 +183,20 @@ The matrix ``` T0_7 ``` has the information about the ```rotation, translation, 
 
 ![](misc_images/HT.png)
 
+## Testing the Forward Kinematics
 
+To verify is the FK is correct, we assigned all the values of the joints ```q1 ,q2 ,q3 ,q4, q5 ,q6 ,q7 ``` equal to `0`. Giving us the following matrix:
+![](misc_images/ForwardKinematics0.png)
+
+And in the simulation give us this values:
+![](misc_images/ForwardKinematics00.png)
+
+For the second test, we changed the values of the joints to ``` q1 = 1; q2 = 0.30; q3 = -0.45; q4 = 0.90; q5 = -0.35; q6 = 0; q7 = 0;```. The matrix give us the following values:
+
+![](misc_images/ForwardKinematics1.png)
+
+Also the simulation had the same values as in the next image:
+
+![](misc_images/ForwardKinematics11.png)
+
+![Python code to test the forwardkinematics](ForwardKInematicsTesting.py)
