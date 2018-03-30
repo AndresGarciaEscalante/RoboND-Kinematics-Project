@@ -53,3 +53,11 @@ $ rosrun kuka_arm IK_server.py
 This file provided all the information about the ```Kuka kr 210``` structrure ```Links, joints,Transmission, Actuators , and physics properties``` for the gazebo environment.
 
   -------------------Imagen-----------------
+
+with this file we extract the following information that will be useful for the next steps:
+
+| O             |Joint          |Parent          | Child     |x    |y    |z    |
+| ------------- |:-------------:| --------------:| ---------:|----:|----:|----:|
+| 0             | Fixed_base    | Base_footprint | Base_link | 0   | 0   | 0   |
+| 1             | Joint_1       | Base_link      | link_1    | 0   | 0   | 0.33|
+| 2             | Joint_2       | link_1         | link_2    | 0.35| 0   | 0.42|
