@@ -66,4 +66,4 @@ with this file we extract the following information that will be useful for the 
 | 5             | Joint_5       | link_4         | link_5      | 0.54 | 0   | 0     |
 | 6             | Joint_6       | link_5         | link_6      | 0.193| 0   | 0     |
 | 7             | End-Effector  | link_6         | gripper_link| 0.11 | 0   | 0.33  |
-| Total         |               |                |             | 2.153| 0   | 1.946 |     |:--------------|---------------|----------------|-------------|------|-----|-------|
+| Total         |               |                |             | 2.153| 0   | 1.946 |     |---------------|:-------------:|:---------------|:------------|:----:|:---:|:-----:|
