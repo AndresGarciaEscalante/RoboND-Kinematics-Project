@@ -67,6 +67,7 @@ with this file we extract the following information that will be useful for the 
 | 6             | Joint_6       | link_5         | link_6      | 0.193| 0   | 0     |
 | 7             | End-Effector  | link_6         | gripper_link| 0.11 | 0   | 0.33  |
 | Total         |               |                |             | 2.153| 0   | 1.946 |                                         | ------------- |---------------|----------------|-------------| ----:| ---:| -----:|
+
 Now we perform the DH procedure on the ```kuka kr 210``` diagram as follows:
 
 ---------------------------------Imagen---------------------------------------
@@ -82,3 +83,5 @@ Once we have the diagram, we will fullfill the DH parameters ``` alpha,a, d, the
 | 5             | 90            | 0              | 0           | 0          |
 | 6             | -90           | 0              | 0           | 0          |
 | 7             | 0             | 0              | 0.303       | 0          |
+
+
