@@ -72,6 +72,7 @@ Now we perform the DH procedure on the ```kuka kr 210``` diagram as follows:
 ---------------------------------Imagen---------------------------------------
 
 Once we have the diagram, we will fullfill the DH parameters ``` alpha,a, d, theta ```
+
 | i             |alpha(i-1)     | a(i-1)         | d(i)        | theta(i)   |
 | ------------- |:-------------:| --------------:| -----------:|-----------:|
 | 1             | 0             | 0              | 0.75        | 0          |
