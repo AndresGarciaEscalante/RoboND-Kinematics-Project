@@ -1,4 +1,4 @@
-[![Udacity - Robotics NanoDegree Program](https://s3-us-west-1.amazonaws.com/udacity-robotics/Extra+Images/RoboND_flag.png)](https://www.udacity.com/robotics)
+[![Udacity - Robotics NanoDegree Program](https://s3-us-west-1.amazonaws.com/udacity-robotics/Extra+Images/RoboND_flag.png)](https://www.google.com.mx/search?q=kuka+kr210&source=lnms&tbm=isch&sa=X&ved=0ahUKEwisg7vxnZPaAhVE2GMKHaoRDJcQ_AUICigB&biw=1855&bih=959#imgrc=ssMjSXNCrCBP6M:)
 # Robotic arm - Pick & Place project
 ## Using the KUKA KR 210
 !(http://url/to/img.png)
