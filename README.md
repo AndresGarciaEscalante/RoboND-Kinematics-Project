@@ -84,6 +84,8 @@ Once Gazebo and rviz are up and running, make sure you see following in the gaze
 	
 	- Dropbox right next to the robot
 	
+	-chucha
+	
 
 If any of these items are missing, report as an issue.
 
