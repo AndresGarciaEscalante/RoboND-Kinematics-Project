@@ -56,8 +56,14 @@ This file provided all the information about the ```Kuka kr 210``` structrure ``
 
 with this file we extract the following information that will be useful for the next steps:
 
-| O             |Joint          |Parent          | Child     |x    |y    |z    |
-| ------------- |:-------------:| --------------:| ---------:|----:|----:|----:|
-| 0             | Fixed_base    | Base_footprint | Base_link | 0   | 0   | 0   |
-| 1             | Joint_1       | Base_link      | link_1    | 0   | 0   | 0.33|
-| 2             | Joint_2       | link_1         | link_2    | 0.35| 0   | 0.42|
+| O             |Joint          |Parent          | Child       |x     |y    |z      |
+| ------------- |:-------------:| --------------:| -----------:|-----:|----:|------:|
+| 0             | Fixed_base    | Base_footprint | Base_link   | 0    | 0   | 0     |
+| 1             | Joint_1       | Base_link      | link_1      | 0    | 0   | 0.33  |
+| 2             | Joint_2       | link_1         | link_2      | 0.35 | 0   | 0.42  |
+| 3             | Joint_3       | link_2         | link_3      | 0    | 0   | 1.25  |
+| 4             | Joint_4       | link_3         | link_4      | 0.96 | 0   | -0.054|
+| 5             | Joint_5       | link_4         | link_5      | 0.54 | 0   | 0     |
+| 6             | Joint_6       | link_5         | link_6      | 0.193| 0   | 0     |
+| 7             | End-Effector  | link_6         | gripper_link| 0.11 | 0   | 0.33  |
+| Total         |               |                |             | 2.153| 0   | 1.946 |     |---------------|---------------|----------------|-------------|------|-----|-------|
