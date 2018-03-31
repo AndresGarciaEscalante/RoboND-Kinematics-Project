@@ -189,7 +189,7 @@ The matrix ``` T0_7 ``` has the information about the ```rotation, translation, 
 
 ### Testing the Forward Kinematics
 
-#### Test Case 1
+#### Case 1
 
 To verify is the FK is correct, we assigned all the values of the joints ```q1 ,q2 ,q3 ,q4, q5 ,q6 ,q7 ``` equal to `0`. Giving us the following matrix:
 
@@ -199,7 +199,7 @@ And in the simulation give us this values:
 
 ![](misc_images/ForwardKinematics00.png)
 
-#### Test Case 2
+#### Case 2
 
 For the second test, we changed the values of the joints to ``` q1 = 1; q2 = 0.30; q3 = -0.45; q4 = 0.90; q5 = -0.35; q6 = 0; q7 = 0;```. The matrix give us the following values:
 
@@ -227,3 +227,123 @@ The locations of the wrist center and the end  effector are respect to the base 
 The `Homogeneuos Transformation` of the `Kuka Kr 210` has the information of the position of the end effector with respect of the base `px, py, pz` as shown in the next image:
 
 ![](misc_images/image-3.png)
+
+ We also need the orientation of the gripper among the `z axis`, that is `r13, r23, and r33`. So, to have the position of the Wrist center we have to applied the following equation:
+
+![](misc_images/equations.png)
+
+#### In the Python Code we had to Correction Needed to Account for Orientation Difference Between Definition of Gripper Link_G in URDF versus DH Convention ####
+
+```Python
+# Requested end-effector orientation
+(roll, pitch, yaw) = tf.transformations.euler_from_quaternion(
+    [req.poses[x].orientation.x,
+     req.poses[x].orientation.y,
+     req.poses[x].orientation.z,
+     req.poses[x].orientation.w])
+
+# Creating symbols for the rotation matrices (Roll, Pitch, Yaw)
+r, p, y = symbols('r p y')
+
+# Roll
+ROT_x = Matrix([[1,       0,       0],
+                [0,  cos(r), -sin(r)],
+                [0,  sin(r),  cos(r)]])
+# Pitch
+ROT_y = Matrix([[cos(p),       0,  sin(p)],
+                [0,       1,       0],
+                [-sin(p),       0,  cos(p)]])
+# Yaw
+ROT_z = Matrix([[cos(y), -sin(y),       0],
+                [sin(y),  cos(y),       0],
+                [0,       0,       1]])
+# The rotation matrix amoung the 3 axis
+ROT_EE = ROT_z * ROT_y * ROT_x
+
+# Correction Needed to Account for Orientation Difference Between
+# Definition of Gripper Link_G in URDF versus DH Convention
+ROT_corr = ROT_z.subs(y, radians(180)) * ROT_y.subs(p, radians(-90))
+ROT_EE = ROT_EE * ROT_corr
+ROT_EE = ROT_EE.subs({'r': roll, 'p': pitch, 'y': yaw})
+```
+
+Once we got to this point, we must calculate the respective joints values `q1,q2,q3,q4,q5,q6,q7`.
+
+The calculation of the thetas is divided into 2 parts. The first one is for theta 1,2 and 3 (position control). `Theta1` is the projection of the `WC` in the `x-y` plane.
+
+```python
+theta1 = atan2(WC[1], WC[0])
+```
+
+For `theta2 and theta 3` we will use the following diagram.
+
+![](misc_images/misc3.png)
+
+Were links C and A are know, and we have to find the values of B, a, b, and c.For this we will need to applied the Cosine Laws
+
+```python
+# find the 3rd side of the triangle
+A = 1.50
+C = 1.25
+B = sqrt(pow((sqrt(WC[0]*WC[0] + WC[1]*WC[1]) - 0.35), 2) + pow((WC[2] - 0.75), 2))
+
+# Cosine Laws SSS to find all inner angles of the triangle
+a = acos((B*B + C*C - A*A) / (2*B*C))
+b = acos((A*A + C*C - B*B) / (2*A*C))
+c = acos((A*A + B*B - C*C) / (2*A*B))
+
+# Find theta2 and theta3
+theta2 = pi/2 - a - atan2(WC[2]-0.75, sqrt(WC[0]*WC[0]+WC[1]*WC[1])-0.35)
+theta3 = pi/2 - (b+0.036)
+```
+For the inverse orientation, we must find the values of theta 4,5, and 6. Now using the DH parameters we can obtain the rotations about `0-3 R` and also `0-6 R`. As in the image bellow.
+
+![](misc_images/image-5.png)
+
+```Python
+# Extract rotation matrix R0_3 from transformation matrix T0_3 the substitute angles q1-3
+R0_3 = T0_1[0:3, 0:3] * T1_2[0:3, 0:3] * T2_3[0:3, 0:3]
+R0_3 = R0_3.evalf(subs={q1: theta1, q2: theta2, q3: theta3})
+
+# Get rotation matrix R3_6 from (transpose of R0_3 * R_EE)
+R3_6 = R0_3.transpose() * ROT_EE
+
+# Euler angles from rotation matrix
+theta4 = atan2(R3_6[2, 2], -R3_6[0, 2])
+theta5 = atan2(sqrt(R3_6[0, 2]*R3_6[0, 2] + R3_6[2, 2]*R3_6[2, 2]), R3_6[1, 2])
+theta6 = atan2(-R3_6[1, 1], R3_6[1, 0])
+ ```
+### Testing Inverse Kinematics
+#### Case 1
+
+##### The testing Inverse Kinematics was performed in the following script :#####
+![Python code to test the inversekinematics](IK_debug.py)
+
+Once launched the script, it gives us the following results:
+
+![](misc_images/TestingIK.png)
+
+## Project Implementation
+
+For the implementation of the IK, I have done several steps:
+
+- Copied the code from `IK_debug.py` to `IK_server.py`
+- Remove all the code lines that demand a lot of proccesors time (simplify).
+- Modified the `inverse_kinematics/launch` and the the parameters to `false`
+
+## Problems during the project
+
+-  Not able to compile using `catkin_make`. This was solved by adding `static_cast<bool>()` in several lines of code.
+
+- When executing `./safe_spawner` on the terminal, the end effector was not able to grasp the can. This was solved by adding on line 327 the following code in the `trajectory_sampler.cpp` file:
+
+ ```
+ ros::Duration(2.0).sleep();
+ ```
+
+## Future Improvements
+
+- Optimize the time of the code.
+- Reduce possibilities of missing grasping the can with the end effector.
+
+## Video of Kuka Kr 210
