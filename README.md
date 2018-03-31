@@ -1,13 +1,17 @@
-[![Udacity - Robotics NanoDegree Program]
 # Robotic arm - Pick & Place project
 ## Using the KUKA KR 210
+## Andres Ricardo Garcia Escalante
+
 ![](misc_images/kuka.jpg)
+
 ## Setting up the enviroment:
 For this project used the following programs:
 - Ubuntu 16.04 LTS OS
 - Ros Luna 1.13.6
 - Gazebo 7.9
 - Rviz 1.12.15
+- Python 2.7
+
 ## Installation steps:
 - Clone this repository to your home directory:
 ```
@@ -183,7 +187,9 @@ The matrix ``` T0_7 ``` has the information about the ```rotation, translation, 
 
 ![](misc_images/HT.png)
 
-## Testing the Forward Kinematics
+### Testing the Forward Kinematics
+
+#### Test Case 1
 
 To verify is the FK is correct, we assigned all the values of the joints ```q1 ,q2 ,q3 ,q4, q5 ,q6 ,q7 ``` equal to `0`. Giving us the following matrix:
 
@@ -193,6 +199,8 @@ And in the simulation give us this values:
 
 ![](misc_images/ForwardKinematics00.png)
 
+#### Test Case 2
+
 For the second test, we changed the values of the joints to ``` q1 = 1; q2 = 0.30; q3 = -0.45; q4 = 0.90; q5 = -0.35; q6 = 0; q7 = 0;```. The matrix give us the following values:
 
 ![](misc_images/ForwardKinematics1.png)
@@ -201,4 +209,21 @@ Also the simulation had the same values as in the next image:
 
 ![](misc_images/ForwardKinematics11.png)
 
+In both cases the results were similar, so we can conclude that the FK of the ```Kuka Kr 210``` is ready.
+
+#### For more testing values just modify the following code : ####
 ![Python code to test the forwardkinematics](ForwardKinematicsTesting.py)
+
+## Inverse Kinematics
+
+The ```Kuka Kr 210 ``` has 6 degrees of freedom, all of them are revolute joints. There are 2 ways to solve the IK, the first one involves a `numerical approach` and the other is known as `closed-form`. For this project we will solve the problem using the second option, the last  3 joints of the `kuka kr  210` have a design that is called `spherical wrist` and which has a common point of intersection called `wrist center`.
+
+The important aspect of the last 3 revolute joints is that they decouple the design into 2 parts  ``` Position and orientation```. The first 3 joints are incharge of the position and the others 3 are responsible of the orientation of the end effector.
+
+The locations of the wrist center and the end  effector are respect to the base as shown in the following image:
+
+![](misc_images/l20-inverse-kinematics-02.png)
+
+The `Homogeneuos Transformation` of the `Kuka Kr 210` has the information of the position of the end effector with respect of the base `px, py, pz` as shown in the next image:
+
+![](misc_images/image-3.png)
