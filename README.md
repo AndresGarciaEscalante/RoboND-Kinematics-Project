@@ -335,15 +335,9 @@ For the implementation of the IK, I have done several steps:
 
 -  Not able to compile using `catkin_make`. This was solved by adding `static_cast<bool>()` in several lines of code.
 
-- When executing `./safe_spawner` on the terminal, the end effector was not able to grasp the can. This was solved by adding on line 327 the following code in the `trajectory_sampler.cpp` file:
-
- ```
- ros::Duration(2.0).sleep();
- ```
+- When executing `./safe_spawner` on the terminal, the end effector is not able to grasp the can. Not even my mentor could solve it. I also tried all the possible solutions from slack.
 
 ## Future Improvements
-
+- Being able to grasp the can.
 - Optimize the time of the code.
 - Reduce possibilities of missing grasping the can with the end effector.
-
-## Video of Kuka Kr 210

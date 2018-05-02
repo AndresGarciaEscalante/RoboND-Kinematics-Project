@@ -42,7 +42,7 @@ def handle_calculate_IK(req):
              alpha5: -pi/2,  a5:     0, d6: 0, q6: q6,
              alpha6:      0,  a6:     0, d7: 0.303, q7: 0}
 
-        # Define Modified DH Transformation matrix
+        # Individual Transformations
         # Homogeneuos Transformation Link_0 to link_1
         T0_1 = Matrix([[cos(q1),       -sin(q1),        0,      a0],
                        [sin(q1)*cos(alpha0), cos(q1)*cos(alpha0), -sin(alpha0), -sin(alpha0)*d1],
@@ -86,7 +86,6 @@ def handle_calculate_IK(req):
                        [0,        0,      0,      1]])
         T6_G = T6_G.subs(s)
 
-        # Create individual transformation matrices
         # Transform from Base link to end effector (Gripper)
         # Important: If we multiply in conjunction the result is different.
         T0_2 = (T0_1 * T1_2)  # Link_0 to Link_2
